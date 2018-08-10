@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.ilegra.desafiotecnico.config.ArquivoPosicoesConfig;
 import com.ilegra.desafiotecnico.config.TestConfig;
 import com.ilegra.desafiotecnico.converter.LinhaDadosVendaConverter;
 import com.ilegra.desafiotecnico.exception.DomainException;
@@ -20,10 +21,6 @@ public class PassosParaConverterDadosVenda extends TestConfig implements cucumbe
 	@Autowired
 	LinhaDadosVendaConverter converter;
 
-	private static final Integer POSICAO_ID_VENDA = 1;
-	private static final Integer POSICAO_ITENS = 2;
-	private static final Integer POSICAO_VENDEDOR = 3;
-
 	private String[] dados = new String[10];
 	private String msgErro;
 	private LinhaDadosVenda linha;
@@ -31,28 +28,30 @@ public class PassosParaConverterDadosVenda extends TestConfig implements cucumbe
 	public PassosParaConverterDadosVenda() {
 
 		Dado("^que foram realizadas vendas$", () -> {
-			dados[POSICAO_ITENS] = "[";
+			dados[ArquivoPosicoesConfig.POSICAO_VENDA_ITENS] = "[";
 		});
 
 		Dado("^que informei um item com id \"([^\"]*)\", quantidade \"([^\"]*)\" e preco \"([^\"]*)\"$",
 				(String id, String quantidade, String preco) -> {
 
-					if (dados[POSICAO_ITENS].length() > 1)
-						dados[POSICAO_ITENS] = dados[POSICAO_ITENS] + ",";
+					if (dados[ArquivoPosicoesConfig.POSICAO_VENDA_ITENS].length() > 1)
+						dados[ArquivoPosicoesConfig.POSICAO_VENDA_ITENS] = dados[ArquivoPosicoesConfig.POSICAO_VENDA_ITENS]
+								+ ",";
 
-					dados[POSICAO_ITENS] = dados[POSICAO_ITENS] + id + "-" + quantidade + "-" + preco;
+					dados[ArquivoPosicoesConfig.POSICAO_VENDA_ITENS] = dados[ArquivoPosicoesConfig.POSICAO_VENDA_ITENS]
+							+ id + "-" + quantidade + "-" + preco;
 				});
 
 		Dado("^que informei o id \"([^\"]*)\"$", (String id) -> {
-			dados[POSICAO_ID_VENDA] = id;
+			dados[ArquivoPosicoesConfig.POSICAO_VENDA_ID] = id;
 		});
 
 		Dado("^que informei o vendedor \"([^\"]*)\"$", (String vendedor) -> {
-			dados[POSICAO_VENDEDOR] = vendedor;
+			dados[ArquivoPosicoesConfig.POSICAO_VENDA_VENDEDOR] = vendedor;
 		});
 
 		Quando("^converter os dados da venda$", () -> {
-			dados[POSICAO_ITENS] = dados[POSICAO_ITENS] + "]";
+			dados[ArquivoPosicoesConfig.POSICAO_VENDA_ITENS] = dados[ArquivoPosicoesConfig.POSICAO_VENDA_ITENS] + "]";
 			try {
 				linha = (LinhaDadosVenda) converter.converter(dados);
 			} catch (DomainException e) {

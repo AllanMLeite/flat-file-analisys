@@ -8,12 +8,12 @@ import java.io.File;
 import java.io.FileReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.ilegra.desafiotecnico.config.ArquivoConfig;
 import com.ilegra.desafiotecnico.config.TestConfig;
 import com.ilegra.desafiotecnico.controller.AnaliseController;
 
@@ -24,22 +24,17 @@ public class PassosParaAnalisarDados extends TestConfig implements cucumber.api.
 	@Autowired
 	AnaliseController analiseController;
 
-	private static final String EXTENSAO_DAT = ".dat";
-
 	public PassosParaAnalisarDados() {
 
-		Path pathIn = Paths.get(System.getProperty("user.home") + "\\data\\in\\");
-		Path pathOut = Paths.get(System.getProperty("user.home") + "\\data\\out\\");
-
-		Dado("^que existam os diretorios \"([^\"]*)\" e \"([^\"]*)\"$", (String arg1, String arg2) -> {
-			Files.createDirectories(pathIn);
-			Files.createDirectories(pathOut);
+		Dado("^que existam os diretorios \"([^\"]*)\" e \"([^\"]*)\"$", (String arg1, String arg2) -> {			
+			Files.createDirectories(ArquivoConfig.PATH_ENTRADA);
+			Files.createDirectories(ArquivoConfig.PATH_SAIDA);
 		});
 
 		Dado("^que exista um arquivo chamado \"([^\"]*)\" com as linhas abaixo$",
 				(String nomeArquivoParaIncluir, DataTable dataTableLinhasDoArquivos) -> {
 					List<String> linhas = dataTableLinhasDoArquivos.asList(String.class);
-					Files.write(pathIn.resolve(nomeArquivoParaIncluir), linhas);
+					Files.write(ArquivoConfig.PATH_ENTRADA.resolve(nomeArquivoParaIncluir), linhas);
 				});
 
 		Quando("^processar$", () -> {
@@ -48,7 +43,7 @@ public class PassosParaAnalisarDados extends TestConfig implements cucumber.api.
 
 		Entao("^deve criar um arquivo chamado \"([^\"]*)\" com a linha \"([^\"]*)\"$",
 				(String nomeArquivoCriado, String linha) -> {
-					File file = Files.walk(pathOut).filter(Files::isRegularFile)
+					File file = Files.walk(ArquivoConfig.PATH_SAIDA).filter(Files::isRegularFile)
 							.filter(x -> x.getFileName().endsWith(nomeArquivoCriado)).map(Path::toFile)
 							.collect(Collectors.toList()).get(0);
 					BufferedReader br = new BufferedReader(new FileReader(file));
@@ -56,7 +51,7 @@ public class PassosParaAnalisarDados extends TestConfig implements cucumber.api.
 				});
 
 		Entao("^deve remover o arquivo \"([^\"]*)\"$", (String nomeArquivo) -> {
-			List<File> files = Files.walk(pathIn).filter(Files::isRegularFile)
+			List<File> files = Files.walk(ArquivoConfig.PATH_ENTRADA).filter(Files::isRegularFile)
 					.filter(x -> x.getFileName().endsWith(nomeArquivo)).map(Path::toFile).collect(Collectors.toList());
 			assertTrue(files.isEmpty());
 		});

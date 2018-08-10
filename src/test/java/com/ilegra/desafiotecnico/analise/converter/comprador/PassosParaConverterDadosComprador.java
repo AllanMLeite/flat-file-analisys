@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.ilegra.desafiotecnico.config.ArquivoPosicoesConfig;
 import com.ilegra.desafiotecnico.config.TestConfig;
 import com.ilegra.desafiotecnico.converter.LinhaDadosCompradorConverter;
 import com.ilegra.desafiotecnico.exception.DomainException;
@@ -14,25 +15,21 @@ public class PassosParaConverterDadosComprador extends TestConfig implements cuc
 	@Autowired
 	LinhaDadosCompradorConverter converter;
 
-	private static final Integer POSICAO_CNPJ = 1;
-	private static final Integer POSICAO_NOME = 2;
-	private static final Integer POSICAO_AREA_NEGOCIO = 3;
-
 	private String[] dadosComprador = new String[10];
 	private String msgErro;
 	private LinhaDadosComprador linha;
 
 	public PassosParaConverterDadosComprador() {
 		Dado("^que informei o cnpj \"([^\"]*)\"$", (String cnpjInformado) -> {
-			dadosComprador[POSICAO_CNPJ] = cnpjInformado;
+			dadosComprador[ArquivoPosicoesConfig.POSICAO_COMPRADOR_CNPJ] = cnpjInformado;
 		});
 
 		Dado("^que informei o nome \"([^\"]*)\"$", (String nome) -> {
-			dadosComprador[POSICAO_NOME] = nome;
+			dadosComprador[ArquivoPosicoesConfig.POSICAO_COMPRADOR_NOME] = nome;
 		});
 
 		Dado("^que informei a area de negocio \"([^\"]*)\"$", (String area) -> {
-			dadosComprador[POSICAO_AREA_NEGOCIO] = area;
+			dadosComprador[ArquivoPosicoesConfig.POSICAO_COMPRADOR_AREA_NEGOCIO] = area;
 		});
 
 		Entao("^deve gerar um comprador com nome \"([^\"]*)\", cnpj \"([^\"]*)\" e area \"([^\"]*)\"$",
