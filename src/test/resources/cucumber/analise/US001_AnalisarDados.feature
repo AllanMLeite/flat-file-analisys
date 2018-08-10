@@ -1,6 +1,6 @@
 # language: pt
 Funcionalidade: US001 Analisar Dados
-  Eu como uma rotina agendada
+  Eu como rotina agendada
   Quero analisar os dados de entrada disponibilizados no diretorio
   Para que eu possa fornecer estatisticas sobre as vendas
 
@@ -12,8 +12,8 @@ Funcionalidade: US001 Analisar Dados
       | 001;01234567890;Diego;50000                 |
       | 001;01234567890;Renato;40000.99             |
       | 001;58543027055;Renato;40000.99             |
-      | 002;2345675434544345;JosedaSilva;Rural      |
-      | 002;2345675433444345;EduardoPereira;Rural   |
+      | 002;76434483000102;JosedaSilva;Rural      |
+      | 002;65355467000108;EduardoPereira;Rural   |
       | 003;10;[1-10-100,2-30-2.50,3-40-3.10];Diego |
       | 003;08;[1-34-10,2-33-1.50,3-40-0.10];Renato |
     Quando processar

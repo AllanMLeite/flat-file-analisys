@@ -20,18 +20,18 @@ import com.ilegra.desafiotecnico.model.LinhaDadosVendedor;
 public class EstatisticaService {
 
 	public Estatistica analisarDados(List<Linha> linhasDoArquivoNormalizadas) {
-		Long totalClientes = analisarTotalClientes(linhasDoArquivoNormalizadas);
+		Long totalCompradores = analisarTotalCompradores(linhasDoArquivoNormalizadas);
 		Long totalVendedores = analisarTotalVendedores(linhasDoArquivoNormalizadas);
 		LinhaDadosVenda vendaComMaiorPreco = analisarVendaComMaiorPreco(linhasDoArquivoNormalizadas);
 		LinhaDadosVendedor vendedorComMenosVendas = analisarVendedorComMenosVendas(linhasDoArquivoNormalizadas);
-		return new Estatistica(totalClientes, totalVendedores, vendaComMaiorPreco, vendedorComMenosVendas);
+		return new Estatistica(totalCompradores, totalVendedores, vendaComMaiorPreco, vendedorComMenosVendas);
 	}
 
 	private long analisarTotalVendedores(List<Linha> linhasDoArquivoNormalizadas) {
 		return linhasDoArquivoNormalizadas.stream().filter(LinhaDadosVendedor.class::isInstance).count();
 	}
 
-	private long analisarTotalClientes(List<Linha> linhasDoArquivoNormalizadas) {
+	private long analisarTotalCompradores(List<Linha> linhasDoArquivoNormalizadas) {
 		return linhasDoArquivoNormalizadas.stream().filter(LinhaDadosComprador.class::isInstance).count();
 	}
 

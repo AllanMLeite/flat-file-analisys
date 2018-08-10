@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.ilegra.desafiotecnico.exception.DomainException;
 import com.ilegra.desafiotecnico.model.Item;
 import com.ilegra.desafiotecnico.model.Linha;
 import com.ilegra.desafiotecnico.model.LinhaDadosVenda;
 
+@Component
 public class LinhaDadosVendaConverter implements LinhaDadosConverter {
 
 	private static final Integer POSICAO_ID_VENDA = 1;

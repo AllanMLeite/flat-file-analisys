@@ -2,22 +2,22 @@ package com.ilegra.desafiotecnico.model;
 
 public class Estatistica {
 
-	public Estatistica(Long totalClientes, Long totalVendedores, LinhaDadosVenda vendaComMaiorValor,
+	public Estatistica(Long totalCompradores, Long totalVendedores, LinhaDadosVenda vendaComMaiorValor,
 			LinhaDadosVendedor vendedorComMenosVendas) {
-		this.totalClientes = totalClientes;
+		this.totalCompradores = totalCompradores;
 		this.totalVendedores = totalVendedores;
 		this.vendaComMaiorValor = vendaComMaiorValor;
 		this.vendedorComMenosVendas = vendedorComMenosVendas;
 	}
 
-	private Long totalClientes;
+	private Long totalCompradores;
 	private Long totalVendedores;
 	private LinhaDadosVenda vendaComMaiorValor;
 	private LinhaDadosVendedor vendedorComMenosVendas;
 
 	@Override
 	public String toString() {
-		return totalClientes + ";" + totalVendedores + ";" + vendaComMaiorValor.getIdVenda() + ";"
+		return totalCompradores + ";" + totalVendedores + ";" + vendaComMaiorValor.getIdVenda() + ";"
 				+ vendedorComMenosVendas.getNome();
 	}
 }

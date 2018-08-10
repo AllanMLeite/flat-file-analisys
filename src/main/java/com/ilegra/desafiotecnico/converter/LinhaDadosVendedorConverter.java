@@ -1,9 +1,12 @@
 package com.ilegra.desafiotecnico.converter;
 
+import org.springframework.stereotype.Component;
+
 import com.ilegra.desafiotecnico.exception.DomainException;
 import com.ilegra.desafiotecnico.model.Linha;
 import com.ilegra.desafiotecnico.model.LinhaDadosVendedor;
 
+@Component
 public class LinhaDadosVendedorConverter implements LinhaDadosConverter {
 
 	private static final Integer POSICAO_CPF = 1;

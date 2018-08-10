@@ -1,11 +1,13 @@
 package com.ilegra.desafiotecnico.model;
 
 import com.ilegra.desafiotecnico.exception.DomainException;
+import com.ilegra.desafiotecnico.validator.ValidatorUtil;
 
 public class LinhaDadosComprador extends Linha {
 	public LinhaDadosComprador(String cnpj, String nome, String areaNegocio) throws DomainException {
 		validarCnpj(cnpj);
 		this.cnpj = cnpj;
+		this.areaNegocio = areaNegocio;
 		this.nome = nome;
 	}
 
@@ -31,8 +33,8 @@ public class LinhaDadosComprador extends Linha {
 		return areaNegocio;
 	}
 
-	private void validarCnpj(String cnpj2) {
-		//TODO
-		
+	private void validarCnpj(String cnpj) throws DomainException {
+		if (!ValidatorUtil.isCnpjValido(cnpj))
+			throw new DomainException("CNPJ invalido.");
 	}
 }

@@ -59,8 +59,7 @@ public class PassosParaAnalisarDados extends TestConfig implements cucumber.api.
 
 		Entao("^deve remover o arquivo \"([^\"]*)\"$", (String nomeArquivo) -> {
 			List<File> files = Files.walk(pathIn).filter(Files::isRegularFile)
-					.filter(x -> x.getFileName().endsWith(nomeArquivo)).map(Path::toFile)
-					.collect(Collectors.toList());
+					.filter(x -> x.getFileName().endsWith(nomeArquivo)).map(Path::toFile).collect(Collectors.toList());
 			assertTrue(files.isEmpty());
 		});
 
