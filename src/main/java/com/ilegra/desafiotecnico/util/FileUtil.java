@@ -29,4 +29,8 @@ public class FileUtil {
 	public void removerArquivo(File arquivo) {
 		arquivo.delete();		
 	}
+	
+	public void criarDiretorio(Path path) throws IOException {
+		Files.createDirectories(path);
+	}
 }

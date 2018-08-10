@@ -30,7 +30,7 @@ public class PassosParaConverterDadosVendedor extends TestConfig implements cucu
 			dados[POSICAO_SALARIO] = salario;
 		});
 		
-		Dado("^que informei o nome \"([^\"]*)\"$", (String nome) -> {
+		Dado("^que informei o nome do vendedor \"([^\"]*)\"$", (String nome) -> {
 			dados[POSICAO_NOME] = nome;
 		});
 
@@ -40,16 +40,17 @@ public class PassosParaConverterDadosVendedor extends TestConfig implements cucu
 			assertEquals(salario, linha.getSalario().toString());
 		});
 
-		Quando("^converter$", () -> {
+		Quando("^converter os dados$", () -> {
 			try {
 				linha = (LinhaDadosVendedor) converter.converter(dados);
 			} catch (Exception e) {
 				msgErro = e.getMessage();
 			}
 		});
-
-		Entao("^deve exibir a mensagem \"([^\"]*)\"$", (String esperado) -> {
+		
+		Entao("^deve exibir  a mensagem \"([^\"]*)\"$", (esperado) -> {
 			assertEquals(esperado, msgErro);
 		});
+
 	}
 }
