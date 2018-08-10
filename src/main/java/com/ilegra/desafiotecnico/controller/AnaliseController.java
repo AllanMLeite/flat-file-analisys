@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 
-import com.ilegra.desafiotecnico.config.AnaliseConfig;
+import com.ilegra.desafiotecnico.config.ArquivoConfig;
 import com.ilegra.desafiotecnico.model.Estatistica;
 import com.ilegra.desafiotecnico.model.Linha;
 import com.ilegra.desafiotecnico.service.EstatisticaService;
@@ -34,8 +34,8 @@ public class AnaliseController {
 
 		criarDiretorios();
 
-		List<File> arquivosValidosNoDiretorio = fileUtil.listarArquivosDoDiretorio(AnaliseConfig.PATH_ENTRADA,
-				AnaliseConfig.EXTENSAO_DAT);
+		List<File> arquivosValidosNoDiretorio = fileUtil.listarArquivosDoDiretorio(ArquivoConfig.PATH_ENTRADA,
+				ArquivoConfig.EXTENSAO_DAT);
 
 		arquivosValidosNoDiretorio.forEach(arquivo -> {
 
@@ -51,8 +51,8 @@ public class AnaliseController {
 	}
 
 	private void criarDiretorios() throws IOException {
-		fileUtil.criarDiretorio(AnaliseConfig.PATH_ENTRADA);
-		fileUtil.criarDiretorio(AnaliseConfig.PATH_SAIDA);
+		fileUtil.criarDiretorio(ArquivoConfig.PATH_ENTRADA);
+		fileUtil.criarDiretorio(ArquivoConfig.PATH_SAIDA);
 	}
 
 	private void removerArquivo(File arquivo) {
@@ -61,8 +61,8 @@ public class AnaliseController {
 
 	private void gravarEstatistica(File arquivo, Estatistica estatistica) {
 		fileUtil.gravarArquivo(
-				AnaliseConfig.PATH_SAIDA.resolve(
-						arquivo.getName().replace(AnaliseConfig.EXTENSAO_DAT, AnaliseConfig.EXTENSAO_DONE_DAT)),
+				ArquivoConfig.PATH_SAIDA.resolve(
+						arquivo.getName().replace(ArquivoConfig.EXTENSAO_DAT, ArquivoConfig.EXTENSAO_DONE_DAT)),
 				estatistica.toString());
 	}
 

@@ -2,6 +2,7 @@ package com.ilegra.desafiotecnico.converter;
 
 import org.springframework.stereotype.Component;
 
+import com.ilegra.desafiotecnico.config.ArquivoPosicoesConfig;
 import com.ilegra.desafiotecnico.exception.DomainException;
 import com.ilegra.desafiotecnico.model.Linha;
 import com.ilegra.desafiotecnico.model.LinhaDadosVendedor;
@@ -9,15 +10,11 @@ import com.ilegra.desafiotecnico.model.LinhaDadosVendedor;
 @Component
 public class LinhaDadosVendedorConverter implements LinhaDadosConverter {
 
-	private static final Integer POSICAO_CPF = 1;
-	private static final Integer POSICAO_NOME = 2;
-	private static final Integer POSICAO_SALARIO = 3;
-
 	@Override
 	public Linha converter(String[] dados) throws DomainException {
-		String cpf = dados[POSICAO_CPF];
-		String nome = dados[POSICAO_NOME];
-		String salario = dados[POSICAO_SALARIO];
+		String cpf = dados[ArquivoPosicoesConfig.POSICAO_VENDEDOR_CPF];
+		String nome = dados[ArquivoPosicoesConfig.POSICAO_VENDEDOR_NOME];
+		String salario = dados[ArquivoPosicoesConfig.POSICAO_VENDEDOR_SALARIO];
 
 		return new LinhaDadosVendedor(cpf, nome, salario);
 	}
