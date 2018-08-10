@@ -22,6 +22,14 @@ public class LinhaDadosVendedor extends Linha {
 		return nome;
 	}
 
+	public String getCpf() {
+		return cpf;
+	}
+
+	public Double getSalario() {
+		return salario;
+	}
+
 	private void validarCPF(String cpf) throws DomainException {
 		if (!ValidatorUtil.isCpfValido(cpf))
 			throw new DomainException("CPF invalido.");

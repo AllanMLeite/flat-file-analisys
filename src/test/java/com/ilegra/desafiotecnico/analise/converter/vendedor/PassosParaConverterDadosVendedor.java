@@ -29,6 +29,16 @@ public class PassosParaConverterDadosVendedor extends TestConfig implements cucu
 		Dado("^que informei o salario \"([^\"]*)\"$", (String salario) -> {
 			dados[POSICAO_SALARIO] = salario;
 		});
+		
+		Dado("^que informei o nome \"([^\"]*)\"$", (String nome) -> {
+			dados[POSICAO_NOME] = nome;
+		});
+
+		Entao("^deve gerar um vendedor com nome \"([^\"]*)\", cpf \"([^\"]*)\" e salario \"([^\"]*)\"$", (String nome, String cpf, String salario) -> {
+			assertEquals(nome, linha.getNome());
+			assertEquals(cpf, linha.getCpf());
+			assertEquals(salario, linha.getSalario().toString());
+		});
 
 		Quando("^converter$", () -> {
 			try {
