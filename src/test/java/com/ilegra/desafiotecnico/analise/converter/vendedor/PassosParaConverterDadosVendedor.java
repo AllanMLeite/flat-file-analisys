@@ -25,6 +25,10 @@ public class PassosParaConverterDadosVendedor extends TestConfig implements cucu
 		Dado("^que informei o cpf \"([^\"]*)\"$", (String cpf) -> {
 			dados[POSICAO_CPF] = cpf;
 		});
+		
+		Dado("^que informei o salario \"([^\"]*)\"$", (String salario) -> {
+			dados[POSICAO_SALARIO] = salario;
+		});
 
 		Quando("^converter$", () -> {
 			try {
