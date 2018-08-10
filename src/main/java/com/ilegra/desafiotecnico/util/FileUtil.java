@@ -26,4 +26,9 @@ public class FileUtil {
 		}
 	}
 
+	public void removerArquivo(File arquivo) {
+		arquivo.delete();
+		
+	}
+
 }

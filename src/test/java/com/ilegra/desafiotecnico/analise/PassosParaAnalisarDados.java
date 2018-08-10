@@ -1,6 +1,7 @@
 package com.ilegra.desafiotecnico.analise;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -55,5 +56,13 @@ public class PassosParaAnalisarDados extends TestConfig implements cucumber.api.
 					BufferedReader br = new BufferedReader(new FileReader(file));
 					assertEquals(linha, br.readLine());
 				});
+
+		Entao("^deve remover o arquivo \"([^\"]*)\"$", (String nomeArquivo) -> {
+			List<File> files = Files.walk(pathIn).filter(Files::isRegularFile)
+					.filter(x -> x.getFileName().endsWith(nomeArquivo)).map(Path::toFile)
+					.collect(Collectors.toList());
+			assertTrue(files.isEmpty());
+		});
+
 	}
 }

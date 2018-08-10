@@ -50,12 +50,18 @@ public class AnaliseController {
 
 			Estatistica estatistica = estatisticaService.analisarDados(linhasDoArquivoNormalizadas);
 
-			gravarArquivo(arquivo, estatistica);
+			gravarEstatistica(arquivo, estatistica);
+			
+			removerArquivo(arquivo);
 
 		});
 	}
 
-	private void gravarArquivo(File arquivo, Estatistica estatistica) {
+	private void removerArquivo(File arquivo) {
+		fileUtil.removerArquivo(arquivo);
+	}
+
+	private void gravarEstatistica(File arquivo, Estatistica estatistica) {
 		fileUtil.gravarArquivo(PATH_SAIDA.resolve(arquivo.getName().replace(".dat", ".done.dat")),
 				estatistica.toString());
 	}
