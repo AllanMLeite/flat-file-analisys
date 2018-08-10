@@ -22,9 +22,9 @@ public class EstatisticaService {
 	public Estatistica analisarDados(List<Linha> linhasDoArquivoNormalizadas) {
 		Long totalCompradores = analisarTotalCompradores(linhasDoArquivoNormalizadas);
 		Long totalVendedores = analisarTotalVendedores(linhasDoArquivoNormalizadas);
-		LinhaDadosVenda vendaComMaiorPreco = analisarVendaComMaiorPreco(linhasDoArquivoNormalizadas);
+		Long idVendaComMaiorPreco = analisarVendaComMaiorPreco(linhasDoArquivoNormalizadas);
 		LinhaDadosVendedor vendedorComMenosVendas = analisarVendedorComMenosVendas(linhasDoArquivoNormalizadas);
-		return new Estatistica(totalCompradores, totalVendedores, vendaComMaiorPreco, vendedorComMenosVendas);
+		return new Estatistica(totalCompradores, totalVendedores, idVendaComMaiorPreco, vendedorComMenosVendas);
 	}
 
 	private long analisarTotalVendedores(List<Linha> linhasDoArquivoNormalizadas) {
@@ -35,10 +35,13 @@ public class EstatisticaService {
 		return linhasDoArquivoNormalizadas.stream().filter(LinhaDadosComprador.class::isInstance).count();
 	}
 
-	private LinhaDadosVenda analisarVendaComMaiorPreco(List<Linha> linhasDoArquivoNormalizadas) {
+	private Long analisarVendaComMaiorPreco(List<Linha> linhasDoArquivoNormalizadas) {
 		List<LinhaDadosVenda> vendas = getVendas(linhasDoArquivoNormalizadas);
 
-		return Collections.max(vendas, Comparator.comparing(LinhaDadosVenda::getValorPedido));
+		if (vendas.isEmpty())
+			return 0l;
+
+		return Collections.max(vendas, Comparator.comparing(LinhaDadosVenda::getValorPedido)).getIdVenda();
 	}
 
 	private LinhaDadosVendedor analisarVendedorComMenosVendas(List<Linha> linhasDoArquivoNormalizadas) {
