@@ -39,8 +39,6 @@ public class PassosParaAnalisarDados extends TestConfig implements cucumber.api.
 		Dado("^que exista um arquivo chamado \"([^\"]*)\" com as linhas abaixo$",
 				(String nomeArquivoParaIncluir, DataTable dataTableLinhasDoArquivos) -> {
 					List<String> linhas = dataTableLinhasDoArquivos.asList(String.class);
-					System.out.println(linhas.get(0));
-					System.out.println(pathIn.resolve(nomeArquivoParaIncluir));
 					Files.write(pathIn.resolve(nomeArquivoParaIncluir), linhas);
 				});
 

@@ -18,11 +18,4 @@ Funcionalidade: US001 Analisar Dados
       | 003;08;[1-34-10,2-33-1.50,3-40-0.10];Renato |
     Quando processar
     Entao deve criar um arquivo chamado "20180809.done.dat" com a linha "2;3;10;Renato"
-
-  Cenario: Deve deletar o arquivo apos processar
-    Dado que exista um arquivo chamado "20180809.dat" com as linhas abaixo
-      | 001;01234567890;Diego;50000                 |
-      | 002;2345675434544345;JosedaSilva;Rural      |
-      | 003;10;[1-10-100,2-30-2.50,3-40-3.10];Diego |
-    Quando processar
-    Entao deve remover o arquivo "20180809.dat"
+    E deve remover o arquivo "20180809.dat"

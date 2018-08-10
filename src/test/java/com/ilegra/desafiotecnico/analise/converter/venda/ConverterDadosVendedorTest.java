@@ -1,4 +1,4 @@
-package com.ilegra.desafiotecnico.analise.converter.vendedor;
+package com.ilegra.desafiotecnico.analise.converter.venda;
 
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootContextLoader;

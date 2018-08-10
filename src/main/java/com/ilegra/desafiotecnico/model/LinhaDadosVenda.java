@@ -8,7 +8,6 @@ public class LinhaDadosVenda extends Linha {
 
 	public LinhaDadosVenda(String idVenda, List<Item> itens, String vendedor) throws DomainException {
 		super();
-		validarIdVenda(idVenda);
 		this.idVenda = Long.valueOf(idVenda);
 		this.listaItens = itens;
 		this.vendedor = vendedor;
@@ -28,10 +27,5 @@ public class LinhaDadosVenda extends Linha {
 
 	public Double getValorPedido() {
 		return listaItens.stream().mapToDouble(x -> x.getQuantidade() * x.getPreco()).sum();
-	}
-
-	private void validarIdVenda(String idVenda) {
-		// TODO Auto-generated method stub
-
 	}
 }

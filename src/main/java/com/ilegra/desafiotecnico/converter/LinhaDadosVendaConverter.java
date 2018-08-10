@@ -1,7 +1,6 @@
 package com.ilegra.desafiotecnico.converter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -33,15 +32,19 @@ public class LinhaDadosVendaConverter implements LinhaDadosConverter {
 		return new LinhaDadosVenda(idVenda, itens, vendedor);
 	}
 
-	private List<Item> normalizarItens(String listaItensDesnormalizados) {
+	private List<Item> normalizarItens(String itensDesnormalizados) throws DomainException {
 		List<Item> itensNormalizados = new ArrayList<>();
-		Arrays.asList(listaItensDesnormalizados.replace("[", "").replace("]", "").split(",")).forEach(item -> {
+
+		String[] listaItensDesnormalizados = itensDesnormalizados.replace("[", "").replace("]", "").split(",");
+
+		for (String item : listaItensDesnormalizados) {
 			String[] propriedadesItem = item.split("-");
+
 			Item itemNormalizado = new Item(propriedadesItem[POSICAO_ITEM_ID],
 					propriedadesItem[POSICAO_ITEM_QUANTIDADE], propriedadesItem[POSICAO_ITEM_PRECO]);
 			itensNormalizados.add(itemNormalizado);
-		});
+		}
+
 		return itensNormalizados;
 	}
-
 }

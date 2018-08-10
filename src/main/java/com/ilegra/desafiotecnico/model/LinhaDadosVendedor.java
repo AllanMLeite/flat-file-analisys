@@ -1,7 +1,7 @@
 package com.ilegra.desafiotecnico.model;
 
 import com.ilegra.desafiotecnico.exception.DomainException;
-import com.ilegra.desafiotecnico.validator.ValidatorUtil;
+import com.ilegra.desafiotecnico.validator.CpfValidator;
 
 public class LinhaDadosVendedor extends Linha {
 
@@ -31,7 +31,7 @@ public class LinhaDadosVendedor extends Linha {
 	}
 
 	private void validarCPF(String cpf) throws DomainException {
-		if (!ValidatorUtil.isCpfValido(cpf))
+		if (!CpfValidator.isCpfValido(cpf))
 			throw new DomainException("CPF invalido.");
 	}
 

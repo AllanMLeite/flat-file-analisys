@@ -1,4 +1,4 @@
-package com.ilegra.desafiotecnico.analise.converter.vendedor;
+package com.ilegra.desafiotecnico.analise.converter.venda;
 
 import static org.junit.Assert.assertEquals;
 
@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ilegra.desafiotecnico.config.TestConfig;
 import com.ilegra.desafiotecnico.converter.LinhaDadosVendedorConverter;
+import com.ilegra.desafiotecnico.exception.DomainException;
 import com.ilegra.desafiotecnico.model.LinhaDadosVendedor;
 
 public class PassosParaConverterDadosVendedor extends TestConfig implements cucumber.api.java8.Pt {
@@ -43,7 +44,7 @@ public class PassosParaConverterDadosVendedor extends TestConfig implements cucu
 		Quando("^converter os dados$", () -> {
 			try {
 				linha = (LinhaDadosVendedor) converter.converter(dados);
-			} catch (Exception e) {
+			} catch (DomainException e) {
 				msgErro = e.getMessage();
 			}
 		});

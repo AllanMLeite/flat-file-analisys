@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ilegra.desafiotecnico.config.TestConfig;
 import com.ilegra.desafiotecnico.converter.LinhaDadosCompradorConverter;
+import com.ilegra.desafiotecnico.exception.DomainException;
 import com.ilegra.desafiotecnico.model.LinhaDadosComprador;
 
 public class PassosParaConverterDadosComprador extends TestConfig implements cucumber.api.java8.Pt {
@@ -44,7 +45,7 @@ public class PassosParaConverterDadosComprador extends TestConfig implements cuc
 		Quando("^converter$", () -> {
 			try {
 				linha = (LinhaDadosComprador) converter.converter(dadosComprador);
-			} catch (Exception e) {
+			} catch (DomainException e) {
 				msgErro = e.getMessage();
 			}
 		});
