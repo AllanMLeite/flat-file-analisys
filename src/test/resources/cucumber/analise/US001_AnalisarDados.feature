@@ -26,3 +26,13 @@ Funcionalidade: US001 Analisar Dados
     E deve criar um arquivo chamado "20180808.done.dat" com a linha "1;2;15;Ramon"
     E deve remover o arquivo "20180809.dat"
     E deve remover o arquivo "20180808.dat"
+
+  Cenario: Deve processar um arquivo sem clientes
+    Dado que exista um arquivo chamado "20180809.dat" com as linhas abaixo
+      | 001;01234567890;Diego;50000                 |
+      | 001;87253578082;Renato;4000.99              |
+      | 001;58543027055;Jose;7000                   |
+      | 003;10;[1-10-100,2-30-2.50,3-40-3.10];Diego |
+      | 003;08;[1-34-10,2-33-1.50,3-40-0.10];Renato |
+    Quando processar
+    Entao deve criar um arquivo chamado "20180809.done.dat" com a linha "0;3;10;Jose"
