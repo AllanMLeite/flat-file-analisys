@@ -2,7 +2,7 @@
 
 buildscript {
 	ext {
-		springBootVersion = '1.5.13.RELEASE'
+		springBootVersion = '2.0.4.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -22,18 +22,15 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-	  maven  {
-          url "http://repo1.maven.org/maven2"
-      }
-} 
+    mavenCentral()
+}
 
 dependencies {
 	compile("org.springframework.boot:spring-boot-starter-web")
-	testCompile('org.springframework.boot:spring-boot-starter-test')	
 	compile('javax.xml.bind:jaxb-api')
-	compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.2.4'	
-	testCompile 'junit:junit:4.12',
-            'info.cukes:cucumber-java:1.1.8',
-            'info.cukes:cucumber-junit:1.1.8'
-	    
+	testCompile('org.springframework.boot:spring-boot-starter-test')	
+	testCompile ('io.cucumber:cucumber-java8:2.3.1')
+    testCompile ('io.cucumber:cucumber-spring:2.3.1')
+    testCompile ('io.cucumber:cucumber-junit:2.3.1')
+    testCompile ('info.cukes:gherkin:2.12.2')	    
 }
