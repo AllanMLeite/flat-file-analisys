@@ -24,6 +24,10 @@ public class LinhaDadosVenda extends Linha {
 	public String getVendedor() {
 		return vendedor;
 	}
+	
+	public List<Item> getListaItens() {
+		return listaItens;
+	}
 
 	public Double getValorPedido() {
 		return listaItens.stream().mapToDouble(x -> x.getQuantidade() * x.getPreco()).sum();

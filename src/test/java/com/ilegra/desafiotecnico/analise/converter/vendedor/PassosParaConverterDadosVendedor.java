@@ -1,4 +1,4 @@
-package com.ilegra.desafiotecnico.analise.converter.venda;
+package com.ilegra.desafiotecnico.analise.converter.vendedor;
 
 import static org.junit.Assert.assertEquals;
 

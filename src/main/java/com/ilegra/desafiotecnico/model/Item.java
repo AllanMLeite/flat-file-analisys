@@ -44,4 +44,41 @@ public class Item {
 			throw new DomainException("Preco invalido.");
 		}
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((idItem == null) ? 0 : idItem.hashCode());
+		result = prime * result + ((preco == null) ? 0 : preco.hashCode());
+		result = prime * result + ((quantidade == null) ? 0 : quantidade.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Item other = (Item) obj;
+		if (idItem == null) {
+			if (other.idItem != null)
+				return false;
+		} else if (!idItem.equals(other.idItem))
+			return false;
+		if (preco == null) {
+			if (other.preco != null)
+				return false;
+		} else if (!preco.equals(other.preco))
+			return false;
+		if (quantidade == null) {
+			if (other.quantidade != null)
+				return false;
+		} else if (!quantidade.equals(other.quantidade))
+			return false;
+		return true;
+	}		
 }

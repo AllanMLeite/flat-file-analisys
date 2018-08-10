@@ -65,5 +65,4 @@ public class AnaliseController {
 						arquivo.getName().replace(ArquivoConfig.EXTENSAO_DAT, ArquivoConfig.EXTENSAO_DONE_DAT)),
 				estatistica.toString());
 	}
-
 }
