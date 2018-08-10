@@ -14,22 +14,12 @@ public class LinhaDadosVenda extends Linha {
 		this.vendedor = vendedor;
 	}
 
-	private Integer idLinha = 3;
-
 	private Long idVenda;
 	private List<Item> listaItens;
 	private String vendedor;
 
-	public Integer getIdLinha() {
-		return idLinha;
-	}
-
 	public Long getIdVenda() {
 		return idVenda;
-	}
-
-	public List<Item> getListaItens() {
-		return listaItens;
 	}
 
 	public String getVendedor() {

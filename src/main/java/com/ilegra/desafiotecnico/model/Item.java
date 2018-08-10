@@ -19,10 +19,6 @@ public class Item {
 	private Double quantidade;
 	private Double preco;
 
-	public Long getIdItem() {
-		return idItem;
-	}
-
 	public Double getPreco() {
 		return preco;
 	}
@@ -31,17 +27,17 @@ public class Item {
 		return quantidade;
 	}
 	
-	private void validarId(String idItem2) {
+	private void validarId(String idItem) {
 		// TODO Auto-generated method stub
 		
 	}
 	
-	private void validarQuantidade(String quantidade2) {
+	private void validarQuantidade(String quantidade) {
 		// TODO Auto-generated method stub
 		
 	}
 	
-	private void validarPreco(String preco2) {
+	private void validarPreco(String preco) {
 		// TODO Auto-generated method stub
 		
 	}

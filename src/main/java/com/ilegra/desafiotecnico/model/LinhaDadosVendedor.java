@@ -6,6 +6,7 @@ import com.ilegra.desafiotecnico.validator.ValidatorUtil;
 public class LinhaDadosVendedor extends Linha {
 
 	public LinhaDadosVendedor(String cpf, String nome, String salario) throws DomainException {
+		super();
 		validarCPF(cpf);
 		validarSalario(salario);
 		this.cpf = cpf;
@@ -13,26 +14,12 @@ public class LinhaDadosVendedor extends Linha {
 		this.salario = Double.parseDouble(salario);
 	}
 
-	private Integer idLinha = 1;
-
 	private String cpf;
 	private String nome;
 	private Double salario;
 
-	public Integer getIdLinha() {
-		return idLinha;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
 	public String getNome() {
 		return nome;
-	}
-
-	public Double getSalario() {
-		return salario;
 	}
 
 	private void validarCPF(String cpf) throws DomainException {
