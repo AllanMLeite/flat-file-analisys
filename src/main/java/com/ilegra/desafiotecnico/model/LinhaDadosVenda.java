@@ -5,8 +5,10 @@ import java.util.List;
 import com.ilegra.desafiotecnico.exception.DomainException;
 
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
+@ToString
 public class LinhaDadosVenda extends Linha {
 
 	public LinhaDadosVenda(String idVenda, List<Item> itens, String vendedor) throws DomainException {

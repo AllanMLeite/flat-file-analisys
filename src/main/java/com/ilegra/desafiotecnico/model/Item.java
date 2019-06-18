@@ -4,9 +4,11 @@ import com.ilegra.desafiotecnico.exception.DomainException;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
 @EqualsAndHashCode
+@ToString
 public class Item {
 
 	public Item(String idItem, String quantidade, String preco) throws DomainException {

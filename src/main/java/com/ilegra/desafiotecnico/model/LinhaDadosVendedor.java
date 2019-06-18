@@ -4,8 +4,10 @@ import com.ilegra.desafiotecnico.exception.DomainException;
 import com.ilegra.desafiotecnico.validator.CpfValidator;
 
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
+@ToString
 public class LinhaDadosVendedor extends Linha {
 
 	public LinhaDadosVendedor(String cpf, String nome, String salario) throws DomainException {
