@@ -43,5 +43,4 @@ public class NormalizadorService {
 		return (Linha) TipoDadoEnum.buscarPeloId(line.substring(POSICAO_INICIAL_ID_LINHA, POSICAO_FINAL_ID_LINHA))
 				.getConverter().converter(line.split(";"));
 	}
-
 }

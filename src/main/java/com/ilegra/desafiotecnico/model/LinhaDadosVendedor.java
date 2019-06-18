@@ -3,6 +3,9 @@ package com.ilegra.desafiotecnico.model;
 import com.ilegra.desafiotecnico.exception.DomainException;
 import com.ilegra.desafiotecnico.validator.CpfValidator;
 
+import lombok.Getter;
+
+@Getter
 public class LinhaDadosVendedor extends Linha {
 
 	public LinhaDadosVendedor(String cpf, String nome, String salario) throws DomainException {
@@ -17,18 +20,6 @@ public class LinhaDadosVendedor extends Linha {
 	private String cpf;
 	private String nome;
 	private Double salario;
-
-	public String getNome() {
-		return nome;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public Double getSalario() {
-		return salario;
-	}
 
 	private void validarCPF(String cpf) throws DomainException {
 		if (!CpfValidator.isCpfValido(cpf))

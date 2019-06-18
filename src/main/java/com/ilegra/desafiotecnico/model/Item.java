@@ -2,6 +2,11 @@ package com.ilegra.desafiotecnico.model;
 
 import com.ilegra.desafiotecnico.exception.DomainException;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+
+@Getter
+@EqualsAndHashCode
 public class Item {
 
 	public Item(String idItem, String quantidade, String preco) throws DomainException {
@@ -21,14 +26,6 @@ public class Item {
 	private Double quantidade;
 	private Double preco;
 
-	public Double getPreco() {
-		return preco;
-	}
-
-	public Double getQuantidade() {
-		return quantidade;
-	}
-
 	private void validarQuantidade(String quantidade) throws DomainException {
 		try {
 			Double.parseDouble(quantidade);
@@ -44,41 +41,4 @@ public class Item {
 			throw new DomainException("Preco invalido.");
 		}
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((idItem == null) ? 0 : idItem.hashCode());
-		result = prime * result + ((preco == null) ? 0 : preco.hashCode());
-		result = prime * result + ((quantidade == null) ? 0 : quantidade.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Item other = (Item) obj;
-		if (idItem == null) {
-			if (other.idItem != null)
-				return false;
-		} else if (!idItem.equals(other.idItem))
-			return false;
-		if (preco == null) {
-			if (other.preco != null)
-				return false;
-		} else if (!preco.equals(other.preco))
-			return false;
-		if (quantidade == null) {
-			if (other.quantidade != null)
-				return false;
-		} else if (!quantidade.equals(other.quantidade))
-			return false;
-		return true;
-	}		
 }
