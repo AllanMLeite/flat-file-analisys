@@ -19,7 +19,10 @@ import cucumber.api.DataTable;
 public class PassosParaConverterDadosVenda extends TestConfig implements cucumber.api.java8.Pt {
 
 	@Autowired
-	LinhaDadosVendaConverter converter;
+	private LinhaDadosVendaConverter converter;
+	
+	@Autowired
+	private ArquivoPosicoesConfig arquivoPosicoesConfig;
 
 	private String[] dados = new String[10];
 	private String msgErro;
@@ -28,30 +31,30 @@ public class PassosParaConverterDadosVenda extends TestConfig implements cucumbe
 	public PassosParaConverterDadosVenda() {
 
 		Dado("^que foram realizadas vendas$", () -> {
-			dados[ArquivoPosicoesConfig.POSICAO_VENDA_ITENS] = "[";
+			dados[arquivoPosicoesConfig.getPosicaoVendaItens()] = "[";
 		});
 
 		Dado("^que informei um item com id \"([^\"]*)\", quantidade \"([^\"]*)\" e preco \"([^\"]*)\"$",
 				(String id, String quantidade, String preco) -> {
 
-					if (dados[ArquivoPosicoesConfig.POSICAO_VENDA_ITENS].length() > 1)
-						dados[ArquivoPosicoesConfig.POSICAO_VENDA_ITENS] = dados[ArquivoPosicoesConfig.POSICAO_VENDA_ITENS]
+					if (dados[arquivoPosicoesConfig.getPosicaoVendaItens()].length() > 1)
+						dados[arquivoPosicoesConfig.getPosicaoVendaItens()] = dados[arquivoPosicoesConfig.getPosicaoVendaItens()]
 								+ ",";
 
-					dados[ArquivoPosicoesConfig.POSICAO_VENDA_ITENS] = dados[ArquivoPosicoesConfig.POSICAO_VENDA_ITENS]
+					dados[arquivoPosicoesConfig.getPosicaoVendaItens()] = dados[arquivoPosicoesConfig.getPosicaoVendaItens()]
 							+ id + "-" + quantidade + "-" + preco;
 				});
 
 		Dado("^que informei o id \"([^\"]*)\"$", (String id) -> {
-			dados[ArquivoPosicoesConfig.POSICAO_VENDA_ID] = id;
+			dados[arquivoPosicoesConfig.getPosicaoVendaId()] = id;
 		});
 
 		Dado("^que informei o vendedor \"([^\"]*)\"$", (String vendedor) -> {
-			dados[ArquivoPosicoesConfig.POSICAO_VENDA_VENDEDOR] = vendedor;
+			dados[arquivoPosicoesConfig.getPosicaoVendaVendedor()] = vendedor;
 		});
 
 		Quando("^converter os dados da venda$", () -> {
-			dados[ArquivoPosicoesConfig.POSICAO_VENDA_ITENS] = dados[ArquivoPosicoesConfig.POSICAO_VENDA_ITENS] + "]";
+			dados[arquivoPosicoesConfig.getPosicaoVendaItens()] = dados[arquivoPosicoesConfig.getPosicaoVendaItens()] + "]";
 			try {
 				linha = (LinhaDadosVenda) converter.converter(dados);
 			} catch (DomainException e) {

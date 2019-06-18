@@ -58,6 +58,5 @@ public class PassosParaAnalisarDados extends TestConfig implements cucumber.api.
 					.filter(x -> x.getFileName().endsWith(nomeArquivo)).map(Path::toFile).collect(Collectors.toList());
 			assertTrue(files.isEmpty());
 		});
-
 	}
 }

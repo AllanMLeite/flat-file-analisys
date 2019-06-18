@@ -13,7 +13,10 @@ import com.ilegra.desafiotecnico.model.LinhaDadosComprador;
 public class PassosParaConverterDadosComprador extends TestConfig implements cucumber.api.java8.Pt {
 
 	@Autowired
-	LinhaDadosCompradorConverter converter;
+	private LinhaDadosCompradorConverter converter;
+	
+	@Autowired
+	private ArquivoPosicoesConfig arquivoPosicoesConfig;
 
 	private String[] dadosComprador = new String[10];
 	private String msgErro;
@@ -21,15 +24,15 @@ public class PassosParaConverterDadosComprador extends TestConfig implements cuc
 
 	public PassosParaConverterDadosComprador() {
 		Dado("^que informei o cnpj \"([^\"]*)\"$", (String cnpjInformado) -> {
-			dadosComprador[ArquivoPosicoesConfig.POSICAO_COMPRADOR_CNPJ] = cnpjInformado;
+			dadosComprador[arquivoPosicoesConfig.getPosicaoCompradorCnpj()] = cnpjInformado;
 		});
 
 		Dado("^que informei o nome \"([^\"]*)\"$", (String nome) -> {
-			dadosComprador[ArquivoPosicoesConfig.POSICAO_COMPRADOR_NOME] = nome;
+			dadosComprador[arquivoPosicoesConfig.getPosicaoCompradorNome()] = nome;
 		});
 
 		Dado("^que informei a area de negocio \"([^\"]*)\"$", (String area) -> {
-			dadosComprador[ArquivoPosicoesConfig.POSICAO_COMPRADOR_AREA_NEGOCIO] = area;
+			dadosComprador[arquivoPosicoesConfig.getPosicaoCompradorAreaNegocio()] = area;
 		});
 
 		Entao("^deve gerar um comprador com nome \"([^\"]*)\", cnpj \"([^\"]*)\" e area \"([^\"]*)\"$",

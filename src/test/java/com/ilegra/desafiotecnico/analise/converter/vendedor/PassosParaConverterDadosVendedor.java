@@ -13,7 +13,10 @@ import com.ilegra.desafiotecnico.model.LinhaDadosVendedor;
 public class PassosParaConverterDadosVendedor extends TestConfig implements cucumber.api.java8.Pt {
 
 	@Autowired
-	LinhaDadosVendedorConverter converter;
+	private LinhaDadosVendedorConverter converter;
+	
+	@Autowired
+	private ArquivoPosicoesConfig arquivoPosicoesConfig;
 
 	private String[] dados = new String[10];
 	private String msgErro;
@@ -21,15 +24,15 @@ public class PassosParaConverterDadosVendedor extends TestConfig implements cucu
 
 	public PassosParaConverterDadosVendedor() {
 		Dado("^que informei o cpf \"([^\"]*)\"$", (String cpf) -> {
-			dados[ArquivoPosicoesConfig.POSICAO_VENDEDOR_CPF] = cpf;
+			dados[arquivoPosicoesConfig.getPosicaoVendedorCpf()] = cpf;
 		});
 
 		Dado("^que informei o salario \"([^\"]*)\"$", (String salario) -> {
-			dados[ArquivoPosicoesConfig.POSICAO_VENDEDOR_SALARIO] = salario;
+			dados[arquivoPosicoesConfig.getPosicaoVendedorSalario()] = salario;
 		});
 
 		Dado("^que informei o nome do vendedor \"([^\"]*)\"$", (String nome) -> {
-			dados[ArquivoPosicoesConfig.POSICAO_VENDEDOR_NOME] = nome;
+			dados[arquivoPosicoesConfig.getPosicaoVendedorNome()] = nome;
 		});
 
 		Entao("^deve gerar um vendedor com nome \"([^\"]*)\", cpf \"([^\"]*)\" e salario \"([^\"]*)\"$",

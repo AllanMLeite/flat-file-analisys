@@ -7,8 +7,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ilegra.desafiotecnico.converter.LinhaDadosConverter;
+import com.ilegra.desafiotecnico.converter.LinhaDadosConverterFactory;
 import com.ilegra.desafiotecnico.exception.DomainException;
 import com.ilegra.desafiotecnico.model.Linha;
 import com.ilegra.desafiotecnico.model.enums.TipoDadoEnum;
@@ -18,6 +21,9 @@ public class NormalizadorService {
 
 	private static final int POSICAO_INICIAL_ID_LINHA = 0;
 	private static final int POSICAO_FINAL_ID_LINHA = 3;
+	
+	@Autowired
+	private LinhaDadosConverterFactory converterFactory;
 
 	public List<Linha> normalizarLinhas(File arquivo) {
 		List<Linha> linhasDoArquivo = new ArrayList<>();
@@ -40,7 +46,8 @@ public class NormalizadorService {
 	}
 
 	private Linha converterLinha(String line) throws DomainException {
-		return (Linha) TipoDadoEnum.buscarPeloId(line.substring(POSICAO_INICIAL_ID_LINHA, POSICAO_FINAL_ID_LINHA))
-				.getConverter().converter(line.split(";"));
+		TipoDadoEnum tipoDadoEnum = TipoDadoEnum.buscarPeloId(line.substring(POSICAO_INICIAL_ID_LINHA, POSICAO_FINAL_ID_LINHA));
+		LinhaDadosConverter linhaDadosConverter = converterFactory.getInstance(tipoDadoEnum.getConverterId());
+		return (Linha) linhaDadosConverter.converter(line.split(";"));
 	}
 }

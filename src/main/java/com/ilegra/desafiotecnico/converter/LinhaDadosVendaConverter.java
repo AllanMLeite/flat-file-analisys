@@ -3,6 +3,7 @@ package com.ilegra.desafiotecnico.converter;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ilegra.desafiotecnico.config.ArquivoPosicoesConfig;
@@ -19,11 +20,14 @@ public class LinhaDadosVendaConverter implements LinhaDadosConverter {
 	private static final String SEPARADOR_ITEM_VIRGULA = ",";
 	private static final String SEPARADOR_ITEM_PROPRIEDADE = "-";
 
+	@Autowired
+	private ArquivoPosicoesConfig arquivoPosicoesConfig;
+	
 	@Override
 	public Linha converter(String[] dados) throws DomainException {
-		String idVenda = dados[ArquivoPosicoesConfig.POSICAO_VENDA_ID];
-		String itensDesnormalizados = dados[ArquivoPosicoesConfig.POSICAO_VENDA_ITENS];
-		String vendedor = dados[ArquivoPosicoesConfig.POSICAO_VENDA_VENDEDOR];
+		String idVenda = dados[arquivoPosicoesConfig.getPosicaoVendaId()];
+		String itensDesnormalizados = dados[arquivoPosicoesConfig.getPosicaoVendaItens()];
+		String vendedor = dados[arquivoPosicoesConfig.getPosicaoVendaVendedor()];
 
 		List<Item> itens = normalizarItens(itensDesnormalizados);
 
@@ -39,9 +43,9 @@ public class LinhaDadosVendaConverter implements LinhaDadosConverter {
 		for (String item : listaItensDesnormalizados) {
 			String[] propriedadesItem = item.split(SEPARADOR_ITEM_PROPRIEDADE);
 
-			Item itemNormalizado = new Item(propriedadesItem[ArquivoPosicoesConfig.POSICAO_VENDA_ITEM_ID],
-					propriedadesItem[ArquivoPosicoesConfig.POSICAO_VENDA_ITEM_QUANTIDADE],
-					propriedadesItem[ArquivoPosicoesConfig.POSICAO_VENDA_ITEM_PRECO]);
+			Item itemNormalizado = new Item(propriedadesItem[arquivoPosicoesConfig.getPosicaoVendaItemId()],
+					propriedadesItem[arquivoPosicoesConfig.getPosicaoVendaItemQuantidade()],
+					propriedadesItem[arquivoPosicoesConfig.getPosicaoVendaItemPreco()]);
 			itensNormalizados.add(itemNormalizado);
 		}
 

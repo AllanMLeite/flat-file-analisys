@@ -1,20 +1,47 @@
 package com.ilegra.desafiotecnico.config;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+
+import lombok.Getter;
+
+@Configuration
+@Getter
 public class ArquivoPosicoesConfig {
+
+	@Value("${posicao.vendedor.cpf}")
+	private Integer posicaoVendedorCpf;
 	
-	public static final Integer POSICAO_VENDEDOR_CPF = 1;
-	public static final Integer POSICAO_VENDEDOR_NOME = 2;
-	public static final Integer POSICAO_VENDEDOR_SALARIO = 3;
+	@Value("${posicao.vendedor.nome}")
+	private Integer posicaoVendedorNome;
+	
+	@Value("${posicao.vendedor.salario}")
+	private Integer posicaoVendedorSalario;
 
-	public static final Integer POSICAO_COMPRADOR_CNPJ = 1;
-	public static final Integer POSICAO_COMPRADOR_NOME = 2;
-	public static final Integer POSICAO_COMPRADOR_AREA_NEGOCIO = 3;
+	@Value("${posicao.comprador.cnpj}")
+	private Integer posicaoCompradorCnpj;
+	
+	@Value("${posicao.comprador.nome}")
+	private Integer posicaoCompradorNome;
+	
+	@Value("${posicao.comprador.area-negocio}")
+	private Integer posicaoCompradorAreaNegocio;
 
-	public static final Integer POSICAO_VENDA_ID = 1;
-	public static final Integer POSICAO_VENDA_ITENS = 2;
-	public static final Integer POSICAO_VENDA_VENDEDOR = 3;
+	@Value("${posicao.venda.id}")
+	private Integer posicaoVendaId;
+	
+	@Value("${posicao.venda.itens}")
+	private Integer posicaoVendaItens;
+	
+	@Value("${posicao.venda.vendedor}")
+	private Integer posicaoVendaVendedor;
 
-	public static final Integer POSICAO_VENDA_ITEM_ID = 0;
-	public static final Integer POSICAO_VENDA_ITEM_QUANTIDADE = 1;
-	public static final Integer POSICAO_VENDA_ITEM_PRECO = 2;
+	@Value("${posicao.venda.item.id}")
+	private Integer posicaoVendaItemId;
+	
+	@Value("${posicao.venda.item.quantidade}")
+	private Integer posicaoVendaItemQuantidade;
+	
+	@Value("${posicao.venda.item.preco}")
+	private Integer posicaoVendaItemPreco;
 }
