@@ -11,6 +11,6 @@ import cucumber.api.CucumberOptions;
 
 @ContextConfiguration(loader = SpringBootContextLoader.class, classes = DesafioTecnicoApplication.class)
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src\\test\\resources\\cucumber\\analise\\US001_AnalisarDados.feature", strict = true)
+@CucumberOptions(features = "src/test/resources/cucumber/analise/US001_AnalisarDados.feature", strict = true)
 public class AnalisarDadosTest {
 }

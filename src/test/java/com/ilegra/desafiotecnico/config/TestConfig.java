@@ -1,7 +1,6 @@
 package com.ilegra.desafiotecnico.config;
 
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
 
 import com.ilegra.desafiotecnico.DesafioTecnicoApplication;
 

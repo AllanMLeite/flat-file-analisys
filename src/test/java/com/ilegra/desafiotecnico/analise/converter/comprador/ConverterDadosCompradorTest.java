@@ -11,6 +11,6 @@ import cucumber.api.junit.Cucumber;
 
 @ContextConfiguration(loader = SpringBootContextLoader.class, classes = DesafioTecnicoApplication.class)
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src\\test\\resources\\cucumber\\analise\\converter\\comprador\\US002_ConverterDadosComprador.feature", strict = true)
+@CucumberOptions(features = "src/test/resources/cucumber/analise/converter/comprador/US002_ConverterDadosComprador.feature", strict = true)
 public class ConverterDadosCompradorTest {
 }

@@ -11,6 +11,6 @@ import cucumber.api.junit.Cucumber;
 
 @ContextConfiguration(loader = SpringBootContextLoader.class, classes = DesafioTecnicoApplication.class)
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src\\test\\resources\\cucumber\\validador\\cpf\\ValidarCpf.feature", strict = true)
+@CucumberOptions(features = "src/test/resources/cucumber/validador/cpf/ValidarCpf.feature", strict = true)
 public class ValidarCpfTest {
 }
