@@ -1,0 +1,33 @@
+sudo: required
+language: java
+jdk:
+- openjdk8
+services:
+  - docker
+
+before_install:
+- wget -qO- https://toolbelt.heroku.com/install.sh | sh
+- chmod +x gradlew
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
+
+branches:
+  only:
+  - master
+
+cache:
+  directories:
+  - '$HOME/.m2/repository'
+  - '$HOME/.gradle'
+
+script:
+- docker build -t allanmleite/$HEROKU_APP_NAME .
+- docker tag allanmleite/$HEROKU_APP_NAME registry.heroku.com/$HEROKU_APP_NAME/web
+
+deploy:
+  provider: script
+  script:
+    docker push allanmleite/$HEROKU_APP_NAME;
+    docker push registry.heroku.com/$HEROKU_APP_NAME/web;
+    heroku container:release web --app $HEROKU_APP_NAME
+  branch: master 
